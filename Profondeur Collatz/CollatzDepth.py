@@ -1,49 +1,29 @@
-import sys
+"""Finds how many numbers take n steps to reach 1 with
+the Collatz conjecture"""
+__author__ = "Nicolas Roy"
 
+from sys import stdout
 
-def getCollatzNb(depth):
-    if depth == 0:
-        return [1]
-    seen = {0,1}
-    toTreat = [1]
-    newNb = []
-    for d in xrange(depth):
-        newNb = []
-        for nb in toTreat:
-            div, mod = divmod(nb-1,3)
-            if mod == 0 and div%2 == 1:
-                newNb.append(div)
-            newNb.append(2*nb)
-        toTreat = []
-        for nb in newNb:
-            if nb not in seen:
-                toTreat.append(nb)
-            seen.add(nb)
-        #sys.stdout.write(str(d+1)+'\t'+str(len(toTreat))+'\n')
-        #print d+1, len(toTreat)
-    return toTreat
+def getReverseCollatz(n):
+    '''Returns the number(s) that give n following
+    one iteration of the Collatz conjecture'''
+    if n == 4:
+        return (8,)
+    if n%6 == 4:
+        return 2*n, (n-1)/3
+    else:
+        return (2*n,)
 
-def getDepth(n):
-    x = 0
-    while n > 1:
-        if n&1:
-            n = 3*n+1
-        else:
-            n = n>>1;
-        print n
-        x = x + 1
-    return x
+def getCollatzDepth(n):
+    '''Returns the number(s) that take exactly n
+    iterations of the Collatz conjecture to reach 1'''
+    old = [1]
+    for _ in xrange(n):
+        new = []
+        for o in old:
+            new += getReverseCollatz(o)
+        old = new
+    return old
 
-#print getDepth(8)
-
-#for i in xrange(10):
-#    print i, len(getCollatzNb(i)), getCollatzNb(i)
-
-#print getDepth(11)
-sys.stdout.write(str(len(getCollatzNb(int(raw_input())))))
-#print len(getCollatzNb(60))
-#getCollatzNb(15)
-
-#f = open('toto.txt', 'w')
-#f.write(' '.join(map(str,sorted(getCollatzNb(50)))))
-#f.close()
+ans = len(getCollatzDepth(int(raw_input())))
+stdout.write(str(ans))
