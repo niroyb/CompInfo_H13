@@ -26,8 +26,8 @@ def testSuite(program, pathname = ''):
         print os.path.basename(filePath), res
     print
 
-#testSuite('sommeChiffresNombresFinal2.py', 'ChallengeAppelGagnant/')
+testSuite('sommeChiffresNombresFinal2.py', 'ChallengeAppelGagnant/')
 testSuite('ChooChoo.py', 'ChooChooTrain/')
-#testSuite('triCount Optimized.py', 'Combien de Triangles/')
-#testSuite('allumettes3.py', 'Les Allumettes/')
-#testSuite('CollatzDepth.py', 'Profondeur Collatz/')
+testSuite('triCount Optimized.py', 'Combien de Triangles/')
+testSuite('allumettes3.py', 'Les Allumettes/')
+testSuite('CollatzDepth.py', 'Profondeur Collatz/')
