@@ -22,13 +22,12 @@ def testSuite(program, pathname = ''):
         #print inputStr
         #print output,'---', expOutput
 
-        res = 'Pass' if output == expOutput else '\n'.join(['Fail', output, expOutput])
+        res = '\tPass' if output == expOutput else '\n'.join(['Fail', output, expOutput])
         print os.path.basename(filePath), res
     print
 
 #testSuite('sommeChiffresNombresFinal2.py', 'ChallengeAppelGagnant/')
 testSuite('ChooChoo.py', 'ChooChooTrain/')
-#testSuite('contant_v3.py', 'ChooChooTrain/')
-#testSuite('triCount.py', 'Combien de Triangles/')
+#testSuite('triCount Optimized.py', 'Combien de Triangles/')
 #testSuite('allumettes3.py', 'Les Allumettes/')
 #testSuite('CollatzDepth.py', 'Profondeur Collatz/')

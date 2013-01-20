@@ -4,18 +4,21 @@ import re, sys, string, itertools
 def yieldSolutions(letterEq):
     letterEq = letterEq.replace('=', '==')
     letters = re.sub('[^a-zA-Z]', '', letterEq)
+    
+    #Get different letters in the same order than they appear in lettereq
     diffLetters = []
     for let in letters:
         if let not in diffLetters:
             diffLetters.append(let)
     diffLetters = ''.join(diffLetters)
+    
     assert len(diffLetters) <= 10
     leadZero = re.compile('[^0-9]0')
 
     for perm in itertools.permutations('0123456789', len(diffLetters)):
         transTab = string.maketrans(diffLetters, ''.join(perm))
         nbFormula = letterEq.translate(transTab)
-        if nbFormula[0] <> '0' and not leadZero.search(nbFormula) and\
+        if nbFormula[0] <> '0' and not leadZero.search(nbFormula) and\ #Check for leading 0
            eval(nbFormula) == True:
             yield nbFormula.replace('==', '=')#, diffLetters.translate(transTab)
 
