@@ -18,7 +18,8 @@ def yieldSolutions(letterEq):
     for perm in itertools.permutations('0123456789', len(diffLetters)):
         transTab = string.maketrans(diffLetters, ''.join(perm))
         nbFormula = letterEq.translate(transTab)
-        if nbFormula[0] <> '0' and not leadZero.search(nbFormula) and\ #Check for leading 0
+        #Check for leading 0
+        if nbFormula[0] <> '0' and not leadZero.search(nbFormula) and\
            eval(nbFormula) == True:
             yield nbFormula.replace('==', '=')#, diffLetters.translate(transTab)
 

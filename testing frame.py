@@ -12,11 +12,11 @@ def  getOutput(args, inputStr):
     return result
 
 def testSuite(program, pathname = ''):
-    fileRe = 'in[0-9]*.txt'
+    fileRe = 'test_in_[0-9]*.txt'
     print program
     for filePath in glob.iglob(pathname+fileRe):
         inputStr = open(filePath).read()
-        outFileName = pathname+'out'+''.join(re.findall('[0-9]', filePath))+'.txt'
+        outFileName = pathname+'test_out_'+''.join(re.findall('[0-9]', filePath))+'.txt'
         output = getOutput(['python',pathname+program], inputStr)
         expOutput = open(outFileName).read()
         #print inputStr
