@@ -1,6 +1,5 @@
 
 import subprocess as sp
-import glob, re, os
 
 def  getOutput(args, inputStr):
     #Execute process
@@ -14,8 +13,9 @@ def  getOutput(args, inputStr):
 
 with open('AllCases.txt') as f:
     cases = f.read().splitlines()
-    #print cases
+
 with open('AllCasesSolved.txt', 'w') as outf:
+    args = ['python', 'sommeChiffresNombresFinal2.py']
     for case in cases:
-        sol = getOutput(['python', 'sommeChiffresNombresFinal2.py'], case)
+        sol = getOutput(args, case)
         outf.write(case+'\t'+sol+'\n')
